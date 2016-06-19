@@ -48,6 +48,27 @@ func SlaveById(w http.ResponseWriter, r *http.Request) {
 	return
 }
 
+func SlavePut(w http.ResponseWriter, r *http.Request) {
+	var postSlave Slave
+	err := json.NewDecoder(r.Body).Decode(&postSlave)
+	if err != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		fmt.Fprintf(w, "Could not parse object (%s)", err.Error())
+		return
+	}
+
+	var maxId uint = 0;
+	for _, slave := range slaves {
+		if slave.Id > maxId {
+			maxId = slave.Id
+		}
+	}
+	postSlave.Id = maxId + 1
+
+	slaves = append(slaves, postSlave)
+	return
+}
+
 func SlaveUpdate(w http.ResponseWriter, r *http.Request) {
 	idStr := mux.Vars(r)["slaveId"]
 	id64, err := strconv.ParseUint(idStr, 10, 0)
@@ -79,4 +100,26 @@ func SlaveUpdate(w http.ResponseWriter, r *http.Request) {
 	}
 	w.WriteHeader(http.StatusNotFound)
 	return
+}
+
+func SlaveDelete(w http.ResponseWriter, r *http.Request) {
+	idStr := mux.Vars(r)["slaveId"]
+	id64, err := strconv.ParseUint(idStr, 10, 0)
+	if err != nil {
+		w.WriteHeader(http.StatusBadRequest)
+		return
+	}
+	id := uint(id64)
+
+	var slaveIdx int = -1
+	for idx, slave := range slaves {
+		if slave.Id == id {
+			slaveIdx = idx
+		}
+	}
+	if slaveIdx == -1 {
+		w.WriteHeader(http.StatusNotFound)
+		return
+	}
+	slaves = append(slaves[:slaveIdx], slaves[slaveIdx+1:]...)
 }
