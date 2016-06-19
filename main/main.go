@@ -7,7 +7,7 @@ import (
 	"log"
 
 	"github.com/gorilla/mux"
-	"../apiobjects"
+	"github.com/KIT-MAMID/fakeapi/apiobjects"
 )
 
 func main() {
