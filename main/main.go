@@ -15,6 +15,7 @@ func main() {
 	router.HandleFunc("/", Index)
 	router.HandleFunc("/slaves", apiobjects.SlaveIndex)
 	router.HandleFunc("/replicasets", apiobjects.ReplicaSetIndex)
+	router.HandleFunc("/riskgroups", apiobjects.RiskGroupIndex)
 	log.Fatal(http.ListenAndServe(":8080", router))
 }
 
