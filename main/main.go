@@ -7,13 +7,13 @@ import (
 	"log"
 
 	"github.com/gorilla/mux"
-	"../slaves"
+	"../apiobjects"
 )
 
 func main() {
 	router := mux.NewRouter().StrictSlash(true)
 	router.HandleFunc("/", Index)
-	router.HandleFunc("/slaves", slaves.SlaveIndex)
+	router.HandleFunc("/slaves", apiobjects.SlaveIndex)
 	log.Fatal(http.ListenAndServe(":8080", router))
 }
 

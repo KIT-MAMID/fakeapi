@@ -1,4 +1,4 @@
-package slaves
+package apiobjects
 
 import (
 	"net/http"
