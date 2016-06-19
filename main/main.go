@@ -12,11 +12,13 @@ import (
 
 func main() {
 	router := mux.NewRouter().StrictSlash(true)
+	
 	router.HandleFunc("/", Index)
-	router.HandleFunc("/api/slaves", apiobjects.SlaveIndex)
-	router.HandleFunc("/api/slave/{slaveId}", apiobjects.SlaveById)
-	router.HandleFunc("/api/replicasets", apiobjects.ReplicaSetIndex)
-	router.HandleFunc("/api/riskgroups", apiobjects.RiskGroupIndex)
+	router.Methods("GET").Path("/api/slaves").Name("SlaveIndex").HandlerFunc(apiobjects.SlaveIndex)
+	router.Methods("GET").Path("/api/slave/{slaveId}").Name("SlaveById").HandlerFunc(apiobjects.SlaveById)
+	router.Methods("GET").Path("/api/replicasets").Name("ReplicaSetIndex").HandlerFunc(apiobjects.ReplicaSetIndex)
+	router.Methods("GET").Path("/api/riskgroups").Name("RiskGroupIndex").HandlerFunc(apiobjects.RiskGroupIndex)
+
 	log.Fatal(http.ListenAndServe(":8080", router))
 }
 
