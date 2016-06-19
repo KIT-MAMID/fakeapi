@@ -6,14 +6,15 @@ import (
 )
 
 type Slave struct {
+	Id uint
 	Hostname string
 	Port uint
 }
 
 func SlaveIndex(w http.ResponseWriter, r *http.Request) {
 	slaves := []Slave{
-		Slave{Hostname: "mksuns31", Port: 1912},
-		Slave{Hostname: "mksuns32", Port: 1912},
+		Slave{Id: 1, Hostname: "mksuns31", Port: 1912},
+		Slave{Id: 2, Hostname: "mksuns32", Port: 1912},
 	}
 	json.NewEncoder(w).Encode(slaves)
 }
