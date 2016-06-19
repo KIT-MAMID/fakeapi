@@ -11,9 +11,9 @@ type RiskGroup struct {
 }
 
 func RiskGroupIndex(w http.ResponseWriter, r *http.Request) {
-	replicaSets := []ReplicaSet{
-		ReplicaSet{Id: 1, Name: "Rack A"},
-		ReplicaSet{Id: 2, Name: "Rack B"},
+	riskGroups := []RiskGroup{
+		RiskGroup{Id: 1, Name: "Rack A"},
+		RiskGroup{Id: 2, Name: "Rack B"},
 	}
-	json.NewEncoder(w).Encode(replicaSets)
+	json.NewEncoder(w).Encode(riskGroups)
 }
