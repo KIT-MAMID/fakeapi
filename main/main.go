@@ -14,6 +14,7 @@ func main() {
 	router := mux.NewRouter().StrictSlash(true)
 	router.HandleFunc("/", Index)
 	router.HandleFunc("/slaves", apiobjects.SlaveIndex)
+	router.HandleFunc("/slave/{slaveId}", apiobjects.SlaveById)
 	router.HandleFunc("/replicasets", apiobjects.ReplicaSetIndex)
 	router.HandleFunc("/riskgroups", apiobjects.RiskGroupIndex)
 	log.Fatal(http.ListenAndServe(":8080", router))
