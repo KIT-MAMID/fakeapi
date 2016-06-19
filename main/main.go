@@ -7,11 +7,13 @@ import (
 	"log"
 
 	"github.com/gorilla/mux"
+	"../slaves"
 )
 
 func main() {
 	router := mux.NewRouter().StrictSlash(true)
 	router.HandleFunc("/", Index)
+	router.HandleFunc("/slaves", slaves.SlaveIndex)
 	log.Fatal(http.ListenAndServe(":8080", router))
 }
 
