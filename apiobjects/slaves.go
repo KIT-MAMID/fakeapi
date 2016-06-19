@@ -6,9 +6,9 @@ import (
 )
 
 type Slave struct {
-	Id uint
-	Hostname string
-	Port uint
+	Id uint			`json:"id"`
+	Hostname string		`json:"hostname"`
+	Port uint		`json:"slave_port"`
 }
 
 func SlaveIndex(w http.ResponseWriter, r *http.Request) {
