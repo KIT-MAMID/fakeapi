@@ -62,21 +62,21 @@
     <div class="panel-body">
         <div class="btn-group btn-group-justified" role="group">
             <div class="btn-group" role="group">
-                <a href="active"
+                <button
                    class="btn btn-default {% if state =='unknown' %} disabled {% endif %} {% if state == 'active' %}active"
-                   aria-pressed="true" {% else %} " {% endif %}>Active</a>
+                   aria-pressed="true" {% else %} " {% endif %}>Active</button>
             </div>
             <div class="btn-group" role="group">
-                <a href="maintenance" class="btn btn-default {% if state == 'maintenance' %}active"
-                   aria-pressed="true" {% else %} " {% endif %}>Maintenance mode</a>
+                <button class="btn btn-default {% if state == 'maintenance' %}active"
+                   aria-pressed="true" {% else %} " {% endif %}>Maintenance mode</button>
             </div>
             <div class="btn-group" role="group">
-                <a href="disabled" class="btn btn-default {% if state == 'disabled' %}active"
-                   aria-pressed="true" {% else %} " {% endif %}>Disabled</a>
+                <button class="btn btn-default {% if state == 'disabled' %}active"
+                   aria-pressed="true" {% else %} " {% endif %}>Disabled</button>
             </div>
             <div class="btn-group" role="group">
-                <a href="unknown" class="btn btn-default {% if state == 'unknown' %}active"
-                   aria-pressed="true" {% else %} disabled" {% endif %}>Unknown</a>
+                <button class="btn btn-default {% if state == 'unknown' %}active"
+                   aria-pressed="true" {% else %} disabled" {% endif %}>Unknown</button>
             </div>
         </div>
     </div>
