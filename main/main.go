@@ -13,6 +13,7 @@ func main() {
 	staticServer := http.FileServer(http.Dir("./static/"))
 	router.Handle("/", staticServer)
 	router.PathPrefix("/static/").Handler(staticServer)
+	router.PathPrefix("/pages/").Handler(staticServer)
 	router.Methods("GET").Path("/api/slaves").Name("SlaveIndex").HandlerFunc(apiobjects.SlaveIndex)
 	router.Methods("GET").Path("/api/slave/{slaveId}").Name("SlaveById").HandlerFunc(apiobjects.SlaveById)
 	router.Methods("PUT").Path("/api/slave").Name("SlavePut").HandlerFunc(apiobjects.SlavePut)
