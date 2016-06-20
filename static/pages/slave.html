@@ -87,8 +87,8 @@
     </div>
     <div class="panel-body">
         <p>Removal is only possible with the slave in disabled mode.</p>
-        <a href="#" role="button" class="btn btn-danger {% if state!='disabled' %} disabled{% endif %}"
-           data-toggle="modal" data-target="#confirm_remove">Remove slave '{{ slavename }}' from system</a>
+        <button type="button" role="button" class="btn btn-danger {% if state!='disabled' %} disabled{% endif %}"
+           data-toggle="modal" data-target="#confirm_remove">Remove slave '{{ slavename }}' from system</button>
     </div>
 </div>
 <div class="modal fade" id="confirm_remove" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
