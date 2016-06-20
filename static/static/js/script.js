@@ -54,4 +54,9 @@ mamidApp.controller('slaveByIdController', function($scope, $http, $routeParams,
         $('#confirm_remove').modal('hide');
         $location.path("/slaves");
     };
+
+    $scope.setSlaveState = function (state) {
+        $scope.slave.state = state;
+        $scope.slave.$save();
+    }
 });
