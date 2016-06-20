@@ -27,10 +27,18 @@ mamidApp.controller('slaveIndexController', function($scope, $http) {
     });
 });
 
-mamidApp.controller('slaveByIdController', function($scope, $http, $routeParams) {
+mamidApp.controller('slaveByIdController', function($scope, $http, $routeParams, $location) {
     $http.get('/api/slave/' + $routeParams['slaveId']).success(
         function(data) {
             $scope.slave = data;
         }
     );
+    
+    $scope.deleteSlave = function (id) {
+        $http.delete('/api/slave/' + id).success(
+            function (data) {
+                $location.path('#/slaves');
+            }
+        );
+    };
 });

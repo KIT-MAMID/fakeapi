@@ -87,8 +87,10 @@
     </div>
     <div class="panel-body">
         <p>Removal is only possible with the slave in disabled mode.</p>
-        <button type="button" role="button" class="btn btn-danger {% if state!='disabled' %} disabled{% endif %}"
-           data-toggle="modal" data-target="#confirm_remove">Remove slave '{{ slavename }}' from system</button>
+        <button ng-if="slave.state == 'disabled'" type="button" role="button" class="btn btn-danger"
+           data-toggle="modal" data-target="#confirm_remove">Remove slave '{{ slave.hostname }}' from system</button>
+        <button ng-if="slave.state != 'disabled'" type="button" role="button" class="btn btn-danger disabled"
+                data-toggle="modal" data-target="#confirm_remove">Remove slave '{{ slave.hostname }}' from system</button>
     </div>
 </div>
 <div class="modal fade" id="confirm_remove" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
@@ -103,7 +105,7 @@
                 You are about to remove the slave {{ slave.hostname }}.
             </div>
             <div class="modal-footer">
-                <a href="/slaves" type="button" class="btn btn-danger">Remove slave {{ slave.hostname }}</a>
+                <button type="button" class="btn btn-danger" ng-click="deleteSlave">Remove slave {{ slave.hostname }}</button>
                 <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
             </div>
         </div>
