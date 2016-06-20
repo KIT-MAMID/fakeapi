@@ -1,0 +1,119 @@
+<h1 class="page-header">Edit slave</h1>
+<div class="bs-callout bs-callout-{{ slave.state }}">
+    <h4>{{ slave.hostname }} is in
+        <b>{{ slave.state }}</b>
+        state.</h4>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Slave Settings</h3>
+    </div>
+    <div class="panel-body">
+        <table width="100%">
+            <tr>
+                <th>Hostname</th>
+                <td colspan="2">
+                    <input type="text" class="form-control" ng-model="slave.hostname"/>
+                </td>
+            </tr>
+            <tr>
+                <th>Slave port</th>
+                <td colspan="2">
+                    <input type="number" class="form-control" ng-model="slave.slave_port"/>
+                </td>
+            </tr>
+            <tr>
+                <th>mongod port range</th>
+                <td>
+                    <input type="number" class="form-control" ng-model="slave.mongod_port_range_begin"/>
+                </td>
+                <td>
+                    <input type="number" class="form-control" ng-model="slave.mongod_port_range_end"/>
+                </td>
+            </tr>
+            <tr>
+                <th>Slave with persistent storage <span class="glyphicon glyphicon-hdd" aria-hidden="true"></span>
+                </th>
+                <td colspan="2">
+                    <input type="checkbox" class="form-control" ng-model="slave.persistant_storage"/>
+                </td>
+            </tr>
+            <tr>
+                <th>Root data directory</th>
+                <td colspan="2">
+                    <input type="text" class="form-control" ng-model="slave.root_data_directory"/>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2"></td>
+                <td>
+                    <button type="submit"
+                            class="btn btn-primary pull-right">
+                        Apply</button>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Slave Control</h3>
+    </div>
+    <div class="panel-body">
+        <div class="btn-group btn-group-justified" role="group">
+            <div class="btn-group" role="group">
+                <a href="active"
+                   class="btn btn-default {% if state =='unknown' %} disabled {% endif %} {% if state == 'active' %}active"
+                   aria-pressed="true" {% else %} " {% endif %}>Active</a>
+            </div>
+            <div class="btn-group" role="group">
+                <a href="maintenance" class="btn btn-default {% if state == 'maintenance' %}active"
+                   aria-pressed="true" {% else %} " {% endif %}>Maintenance mode</a>
+            </div>
+            <div class="btn-group" role="group">
+                <a href="disabled" class="btn btn-default {% if state == 'disabled' %}active"
+                   aria-pressed="true" {% else %} " {% endif %}>Disabled</a>
+            </div>
+            <div class="btn-group" role="group">
+                <a href="unknown" class="btn btn-default {% if state == 'unknown' %}active"
+                   aria-pressed="true" {% else %} disabled" {% endif %}>Unknown</a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="panel panel-danger">
+    <div class="panel-heading">
+        <h3 class="panel-title">Remove Slave</h3>
+    </div>
+    <div class="panel-body">
+        <p>Removal is only possible with the slave in disabled mode.</p>
+        <a href="#" role="button" class="btn btn-danger {% if state!='disabled' %} disabled{% endif %}"
+           data-toggle="modal" data-target="#confirm_remove">Remove slave '{{ slavename }}' from system</a>
+    </div>
+</div>
+<div class="modal fade" id="confirm_remove" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Cancel"><span
+                        aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Confirm Slave Removal</h4>
+            </div>
+            <div class="modal-body">
+                You are about to remove the slave {{ slave.hostname }}.
+            </div>
+            <div class="modal-footer">
+                <a href="/slaves" type="button" class="btn btn-danger">Remove slave {{ slave.hostname }}</a>
+                <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    var url = window.location + "";
+    idx = url.indexOf("#");
+    var hash = idx != -1 ? url.substring(idx + 1) : "";
+    if (hash == 'modal') {
+        $('#confirm_remove').modal();
+    }
+</script>
