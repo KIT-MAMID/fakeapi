@@ -48,7 +48,7 @@
                 <td colspan="2"></td>
                 <td>
                     <button ng-disabled="slave.state != 'disabled'" type="submit"
-                            class="btn btn-primary pull-right">
+                            class="btn btn-primary pull-right" ng-click="updateSlave()">
                         Apply</button>
                 </td>
             </tr>
@@ -62,14 +62,14 @@
     <div class="panel-body">
         <div class="btn-group btn-group-justified" role="group">
             <div class="btn-group" role="group">
-                <button ng-disabled="slave.state == 'unknown" ng-class="{active: slave.state == 'active'}"
+                <button ng-disabled="slave.state == 'unknown'" ng-class="{active: slave.state == 'active'}"
                    class="btn btn-default">Active</button>
             </div>
             <div class="btn-group" role="group">
-                <button ng-disabled="slave.state == 'unknown" ng-class="{active: slave.state == 'maintenance'}" class="btn btn-default">Maintenance mode</button>
+                <button ng-disabled="slave.state == 'unknown'" ng-class="{active: slave.state == 'maintenance'}" class="btn btn-default">Maintenance mode</button>
             </div>
             <div  class="btn-group" role="group">
-                <button ng-disabled="slave.state == 'unknown" class="btn btn-default" ng-class="{active: slave.state == 'disabled'}">Disabled</button>
+                <button ng-disabled="slave.state == 'unknown'" class="btn btn-default" ng-class="{active: slave.state == 'disabled'}">Disabled</button>
             </div>
             <div class="btn-group" role="group">
                 <button ng-disabled="slave.state != 'unknown'" class="btn btn-default" ng-class="{active: slave.state == 'unknown'}">Unknown</button>

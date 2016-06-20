@@ -30,7 +30,12 @@ mamidApp.controller('slaveIndexController', function($scope, $http, SlaveService
 
 mamidApp.controller('slaveByIdController', function($scope, $http, $routeParams, $location, SlaveService) {
     $scope.slave = SlaveService.get({ slave : $routeParams['slaveId']});
-    
+
+    $scope.updateSlave = function () {
+        $scope.slave.$save();
+        $location.path("/slaves");
+    };
+
     $scope.deleteSlave = function () {
         $scope.slave.$delete();
         $('#confirm_remove').modal('hide');
