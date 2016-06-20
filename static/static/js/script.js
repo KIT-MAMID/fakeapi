@@ -4,20 +4,22 @@ mamidApp.config(function ($routeProvider) {
    $routeProvider
        .when('/', {
            templateUrl: 'pages/home.html',
-           controller: 'mainController',
-           controllerAs: 'main'
+           controller: 'mainController'
        })
        .when('/slaves', {
            templateUrl: 'pages/slaves.html',
-           controller: 'slavesController',
-           controllerAs: 'slaves'
+           controller: 'slavesController'
        })
 });
 
-mamidApp.controller('mainController', function() {
-    this.message = 'Greetings from the controller';
+mamidApp.controller('mainController', function($scope) {
+    $scope.message = 'Greetings from the controller';
 });
 
-mamidApp.controller('slavesController', function() {
-    this.message = 'List of slaves'
+mamidApp.controller('slavesController', function($scope, $http) {
+    $scope.message = 'List of slaves'
+    $http.get('/api/slaves').
+        success(function(data){
+            $scope.slaves = data
+    });
 });
