@@ -1,4 +1,4 @@
-var mamidApp = angular.module('mamidApp', ['ngRoute']);
+var mamidApp = angular.module('mamidApp', ['ngRoute', 'ngResource']);
 
 mamidApp.config(function ($routeProvider) {
    $routeProvider
@@ -16,29 +16,24 @@ mamidApp.config(function ($routeProvider) {
        })
 });
 
+mamidApp.factory('SlaveService', function ($resource) {
+    return $resource('/api/slaves/:slave', {slave: "@id"})
+});
+
 mamidApp.controller('mainController', function($scope) {
     $scope.message = 'Greetings from the controller';
 });
 
-mamidApp.controller('slaveIndexController', function($scope, $http) {
-    $http.get('/api/slaves').
-        success(function(data){
-            $scope.slaves = data;
-    });
+mamidApp.controller('slaveIndexController', function($scope, $http, SlaveService) {
+    $scope.slaves = SlaveService.query()
 });
 
-mamidApp.controller('slaveByIdController', function($scope, $http, $routeParams, $location) {
-    $http.get('/api/slave/' + $routeParams['slaveId']).success(
-        function(data) {
-            $scope.slave = data;
-        }
-    );
+mamidApp.controller('slaveByIdController', function($scope, $http, $routeParams, $location, SlaveService) {
+    $scope.slave = SlaveService.get({ slave : $routeParams['slaveId']});
     
-    $scope.deleteSlave = function (id) {
-        $http.delete('/api/slave/' + id).success(
-            function (data) {
-                $location.path('#/slaves');
-            }
-        );
+    $scope.deleteSlave = function () {
+        $scope.slave.$delete();
+        $('#confirm_remove').modal('hide');
+        $location.path("/slaves");
     };
 });
