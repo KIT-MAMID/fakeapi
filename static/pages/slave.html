@@ -13,41 +13,41 @@
             <tr>
                 <th>Hostname</th>
                 <td colspan="2">
-                    <input type="text" class="form-control" ng-model="slave.hostname"/>
+                    <input ng-disabled="slave.state != 'disabled'" type="text" class="form-control" ng-model="slave.hostname"/>
                 </td>
             </tr>
             <tr>
                 <th>Slave port</th>
                 <td colspan="2">
-                    <input type="number" class="form-control" ng-model="slave.slave_port"/>
+                    <input ng-disabled="slave.state != 'disabled'" type="number" class="form-control" ng-model="slave.slave_port"/>
                 </td>
             </tr>
             <tr>
                 <th>mongod port range</th>
                 <td>
-                    <input type="number" class="form-control" ng-model="slave.mongod_port_range_begin"/>
+                    <input ng-disabled="slave.state != 'disabled'" type="number" class="form-control" ng-model="slave.mongod_port_range_begin"/>
                 </td>
                 <td>
-                    <input type="number" class="form-control" ng-model="slave.mongod_port_range_end"/>
+                    <input ng-disabled="slave.state != 'disabled'" type="number" class="form-control" ng-model="slave.mongod_port_range_end"/>
                 </td>
             </tr>
             <tr>
                 <th>Slave with persistent storage <span class="glyphicon glyphicon-hdd" aria-hidden="true"></span>
                 </th>
                 <td colspan="2">
-                    <input type="checkbox" class="form-control" ng-model="slave.persistant_storage"/>
+                    <input ng-disabled="slave.state != 'disabled'" type="checkbox" class="form-control" ng-model="slave.persistant_storage"/>
                 </td>
             </tr>
             <tr>
                 <th>Root data directory</th>
                 <td colspan="2">
-                    <input type="text" class="form-control" ng-model="slave.root_data_directory"/>
+                    <input ng-disabled="slave.state != 'disabled'" type="text" class="form-control" ng-model="slave.root_data_directory"/>
                 </td>
             </tr>
             <tr>
                 <td colspan="2"></td>
                 <td>
-                    <button type="submit"
+                    <button ng-disabled="slave.state != 'disabled'" type="submit"
                             class="btn btn-primary pull-right">
                         Apply</button>
                 </td>
