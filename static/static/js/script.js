@@ -10,14 +10,16 @@ mamidApp.config(function ($routeProvider) {
            templateUrl: 'pages/slaves.html',
            controller: 'slaveIndexController'
        })
-       .when('/slave/:slaveId', {
+       .when('/slaves/:slaveId', {
            templateUrl: 'pages/slave.html',
            controller: 'slaveByIdController'
        })
 });
 
 mamidApp.factory('SlaveService', function ($resource) {
-    return $resource('/api/slaves/:slave', {slave: "@id"})
+    return $resource('/api/slaves/:slave', {slave: "@id"}, {
+        create: {method: 'put'}
+    });
 });
 
 mamidApp.controller('mainController', function($scope) {
@@ -29,10 +31,21 @@ mamidApp.controller('slaveIndexController', function($scope, $http, SlaveService
 });
 
 mamidApp.controller('slaveByIdController', function($scope, $http, $routeParams, $location, SlaveService) {
-    $scope.slave = SlaveService.get({ slave : $routeParams['slaveId']});
+    var slaveId = $routeParams['slaveId'];
+    $scope.is_create_view = slaveId === "new";
+    if ($scope.is_create_view) {
+        $scope.slave = new SlaveService();
+        $scope.slave.state = "disabled";
+    } else {
+        $scope.slave = SlaveService.get({slave: slaveId});
+    }
 
     $scope.updateSlave = function () {
-        $scope.slave.$save();
+        if ($scope.is_create_view) {
+            $scope.slave.$create();
+        } else {
+            $scope.slave.$save();
+        }
         $location.path("/slaves");
     };
 

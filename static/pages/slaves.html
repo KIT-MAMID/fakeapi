@@ -4,7 +4,7 @@
 <div class="bs-callout bs-callout-unknown" ng-repeat="slave in slaves" ng-if="slave.state == 'unknown'">
     <h4>{{ slave.hostname }} - <b>Unknown</b>
                 <span class="pull-right">
-                    <a href="#/slave/{{slave.id}}" class="btn btn-default"><span class="glyphicon glyphicon-wrench"
+                    <a href="#/slaves/{{slave.id}}" class="btn btn-default"><span class="glyphicon glyphicon-wrench"
                                                                                       aria-hidden="true"></span></a>
                     </span>
     </h4>
@@ -14,7 +14,7 @@
 <div class="bs-callout bs-callout-maintenance" ng-repeat="slave in slaves" ng-if="slave.state == 'maintenance'">
     <h4>{{ slave.hostname }} - <b>Maintenance</b>
                 <span class="pull-right">
-                    <a href="#/slave/{{slave.id}}" class="btn btn-default"><span class="glyphicon glyphicon-wrench"
+                    <a href="#/slaves/{{slave.id}}" class="btn btn-default"><span class="glyphicon glyphicon-wrench"
                                                                                       aria-hidden="true"></span></a>
                     </span>
     </h4>
@@ -24,7 +24,7 @@
 <div class="bs-callout bs-callout-disabled" ng-repeat="slave in slaves" ng-if="slave.state == 'disabled'">
     <h4>{{ slave.hostname }} - <b>Disabled</b>
                 <span class="pull-right">
-                    <a href="#/slave/{{slave.id}}" class="btn btn-default"><span class="glyphicon glyphicon-wrench"
+                    <a href="#/slaves/{{slave.id}}" class="btn btn-default"><span class="glyphicon glyphicon-wrench"
                                                                                       aria-hidden="true"></span></a>
                     </span>
     </h4>
@@ -34,7 +34,7 @@
 <div class="bs-callout bs-callout-active" ng-repeat="slave in slaves" ng-if="slave.state == 'active'">
     <h4>{{ slave.hostname }} - <b>Active</b>
                 <span class="pull-right">
-                    <a href="#/slave/{{slave.id}}" class="btn btn-default"><span class="glyphicon glyphicon-wrench"
+                    <a href="#/slaves/{{slave.id}}" class="btn btn-default"><span class="glyphicon glyphicon-wrench"
                                                                                        aria-hidden="true"></span></a>
                     </span>
     </h4>
